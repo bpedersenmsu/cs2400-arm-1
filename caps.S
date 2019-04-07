@@ -21,14 +21,15 @@
 		MOV		r8, #11
 		MOV		r9, #0	;Set counter to 0
 		
-loop		CMP		r3, r5	;Check if r3 is less than 'a'
+loop		LDR		r3, [R0]
+		CMP		r3, r5	;Check if r3 is less than 'a'
 		Bmi		done		; Branch if it is
 		CMP		r3, r7	; Check if r3 is greater than 'z'
 		BGT		done
 		SUB		r3, r3, r2
-		STR		r3, [r0], #8
 		ADD		r9, r9, #1
-done		SUBS		r8, r8, #1					; r5 - 1 => r5
+done		SUBS		r8, r8, #1
+		STR		r3, [r0], #4
 		BNE		loop
 		END
 		
