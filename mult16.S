@@ -27,7 +27,7 @@ loop		AND		r9, r7, r8
 done		SUBS		r2, r2, #1
 		LSL		r8, r8, #1
 		BNE		loop
-		Mov		R0, #0
+		STR 		R10, [R4]
 DONE
 		
 numbers	DCD		0b1100101010010001, 0b1111010101000011
