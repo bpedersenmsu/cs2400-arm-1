@@ -13,20 +13,27 @@
 		ADR		r4, result
 		ADR		r5, carry
 		
-		MOV		r2, #8
+		MOV		r2, #16
 		LDR		r6, [r0]
 		LDR		r7, [r0, #4]
-		LDR		r8, [r3]
+		LDR		r8, [r3] ;Init mask
 		MOV		R10, #0
+		MOV		R14, #0
 		
 loop		AND		r9, r7, r8
-		ADD		R10, r10, r6, LSL r9
+		CMP		R14, R9
+		ADDmi	R10, R10,	R6
+		LSL		R6, R6, #1
 done		SUBS		r2, r2, #1
-		LSL		r8, r8, #4
+		LSL		r8, r8, #1
 		BNE		loop
+		Mov		R0, #0
+DONE
 		
 numbers	DCD		0b1100101010010001, 0b1111010101000011
 shiftnum	DCD		4
-mask		DCD		0x0000000F
+mask		DCD		0x00000001
 result	FILL		4
 carry	FILL		4
+		
+		;should	= C211 C8F3
