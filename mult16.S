@@ -27,7 +27,7 @@ loop		AND		r9, r7, r8
 done		SUBS		r2, r2, #1
 		LSL		r8, r8, #1
 		BNE		loop
-		STR 		R10, [R4]
+		STR		R10, [R4]
 DONE
 		
 numbers	DCD		0b1100101010010001, 0b1111010101000011
@@ -36,4 +36,4 @@ mask		DCD		0x00000001
 result	FILL		4
 carry	FILL		4
 		
-		;should	= C211 C8F3
+		;C211 C8F3
