@@ -69,12 +69,12 @@ done		SUBS		r10, r10, #1
 		B		domult
 finish	ADR		r2, maskone
 		ADR		r3, masktwo
-		ADR		r0, temp
+		ADR		r14, temp
 		LDR		r7, [r2]
 		LDR		r8, [r3]
-		LDR		r4, [r0]
-		LDR		r5, [r0, #4]
-		LDR		r6, [r0, #8]
+		LDR		r4, [r14]
+		LDR		r5, [r14, #4]
+		LDR		r6, [r14, #8]
 		AND		r9, r5, r7
 		AND		r10, r5, r8
 		AND		r11, r6, r7
@@ -83,7 +83,7 @@ finish	ADR		r2, maskone
 		LSR		r12, r12, #16
 		LSL		r9, r9, #16
 		LSL		r11, r11, #16
-		LDR		r8, [r0, #12]
+		LDR		r8, [r14, #12]
 		MOV		r0, #0
 		MOV		r1, #0
 		ADDs		r1, r8, r10
@@ -92,6 +92,8 @@ finish	ADR		r2, maskone
 		ADDCC	r1, r1, #1
 		ADDs		r0, r0, r11
 		ADDCC	r1, r1, #1
+		STR		R0, [r14, #16] ; Store 1st 32bits
+		STR		R1, [r14, #24] ; Store 2nd 32bits
 		
 		
 		
